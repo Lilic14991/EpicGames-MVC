@@ -1,0 +1,32 @@
+﻿@model EpicGames.ViewModels.AccountFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New account</h2>
+
+@using (Html.BeginForm("Save", "Accounts"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Account.AName)
+        @Html.TextBoxFor(m => m.Account.AName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Account.AName)
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Account.IsSubcribedOnEpicGames) Subcribed To Epic Games
+        </label>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Account.ConsoleTypeID)
+        @Html.DropDownListFor(m => m.Account.ConsoleTypeID, new SelectList(Model.ConsoleTypes, "ConsoleTypeID", "CName"), "Select Console Type", new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Account.AccountID)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+
+}

@@ -1,0 +1,21 @@
+﻿@model EpicGames.ViewModels.CategoryFormViewModel
+@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Category</h2>
+
+@using (Html.BeginForm("Save", "Categories"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Category.CName)
+        @Html.TextBoxFor(m => m.Category.CName, new { @class = "form-control" } )
+        @Html.ValidationMessageFor(m => m.Category.CName)
+    </div>
+
+    @Html.HiddenFor(m => m.Category.CategoryID)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

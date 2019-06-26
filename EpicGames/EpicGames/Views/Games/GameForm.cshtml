@@ -1,0 +1,51 @@
+﻿@model EpicGames.ViewModels.GameFormViewModel
+@{
+    /**/
+
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Game</h2>
+@using (Html.BeginForm("Save", "Games"))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.Game.GName)
+    @Html.TextBoxFor(m => m.Game.GName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Game.GName)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Game.GYear)
+    @Html.TextBoxFor(m => m.Game.GYear, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Game.GYear)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Game.GFor)
+    @Html.TextBoxFor(m => m.Game.GFor, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Game.GFor)
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Game.PGame)
+    @Html.TextBoxFor(m => m.Game.PGame, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Game.PGame)
+</div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Categories)
+        @Html.DropDownListFor(m => m.Game.CategoryID, new SelectList(Model.Categories,"CategoryID","CName"),"Please select Game category", new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Game.CategoryID) 
+    </div>
+
+    
+    @Html.HiddenFor(m => m.Game.GameID)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+
+}
+

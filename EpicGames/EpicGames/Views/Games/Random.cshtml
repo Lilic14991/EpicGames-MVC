@@ -1,0 +1,25 @@
+﻿@model EpicGames.ViewModels.RandomGameViewModel
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var className = Model.Accounts.Count > 0 ? "popular" : null;
+}
+
+<h2 class="@className">@Model.Game.GName</h2>
+@if (Model.Accounts.Count == 0)
+{
+    <text>No one has ever purchased this game before.</text>
+}
+else
+{
+
+    <ul>
+        @foreach (var account in Model.Accounts)
+        {
+            <li>@account.AName</li>
+        }
+    </ul>
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<EpicGames.Models.Buy>
+@{
+    ViewBag.Title = "Buys";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Add new buy", "New")
+@if (!Model.Any())
+{
+    <p>We don't have any games yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>AccountID</th>
+                <th>GameID</th>
+                <th>Date of buy</th>
+                <th>Options</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var buy in Model)
+            {
+                <tr>
+                    <td>@buy.AccountID</td>
+                    <td>@buy.GameID</td>
+                    <td>@buy.BuyDate</td>
+                    
+
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = buy.BuyID })</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new { id = buy.BuyID })</td>
+                    <td>@Html.ActionLink("Details", "Details", new { id = buy.BuyID })</td>
+
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+}

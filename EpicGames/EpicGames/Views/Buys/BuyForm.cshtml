@@ -1,0 +1,36 @@
+﻿@model EpicGames.ViewModels.BuyFormViewModel
+@{
+    /**/
+
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Buy</h2>
+@using (Html.BeginForm("Save", "Buys"))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.Accounts)
+    @Html.DropDownListFor(m => m.AccountID, new SelectList(Model.Accounts,"AccountID","AName"),"Choose account", new {@class = "form-control"})
+    @Html.ValidationMessageFor(m => m.AccountID)
+
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Games)
+    @Html.DropDownListFor(m => m.GameID, new SelectList(Model.Games, "GameID", "GName"), "Choose game", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.GameID)
+
+</div>
+
+
+
+    
+    @Html.HiddenFor(m => m.BuyID)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Save</button>
+
+
+}
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<EpicGames.Models.Game>
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.ActionLink("Add New Game", "New")
+@if (!Model.Any())
+{
+    <p>We don't have any games yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Game</th>
+                <th>Game Published</th>
+                <th>Platform</th>
+                <th>Game price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var game in Model)
+            {
+                <tr>
+                    <td>@game.GName</td>
+                    <td>@game.GYear</td>
+                    <td>@game.GFor</td>
+                    <td>@game.PGame</td>
+                    <td>@game.Category.CName</td>
+
+                    <td>@Html.ActionLink("Edit", "Edit", new { id = game.GameID })</td>
+                    <td>@Html.ActionLink("Delete", "Delete", new { id = game.GameID })</td>
+                    <td>@Html.ActionLink("Details", "Details", new { id = game.GameID })</td>
+
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+}
